@@ -72,8 +72,8 @@ router.put("/videos/:id", async (req, res) => {
 
 		const currentVotes = selectResult.rows[0].votes;
 
-		// Calculate the new vote
-		const newVotes = currentVotes + voteChange;
+		// Calculate the new vote, ensuring it does not go below zero
+		const newVotes = Math.max(0, currentVotes + voteChange);
 
 		// Update the vote in the database
 		const updateSql = `UPDATE videos SET votes = $1 WHERE id = $2 RETURNING *`;
@@ -83,6 +83,12 @@ router.put("/videos/:id", async (req, res) => {
 		res.status(200).json(updateResult.rows[0]);
 	} catch (error) {
 		console.error("Error updating video votes:", error);
+
+		if (error.code === "23514") {
+			// '23514' is the PostgreSQL error code for a check constraint violation
+			return res.status(400).json({ message: "Votes cannot be negative" });
+		}
+
 		res.status(500).json({ message: "Internal server error" });
 	}
 });
