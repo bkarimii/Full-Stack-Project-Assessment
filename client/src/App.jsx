@@ -48,7 +48,6 @@ const App = () => {
 
 			if (response.ok) {
 				const updatedVideo = await response.json();
-				console.log(updatedVideo, "data back from server");
 
 				setRecommendedVids((prevVids) =>
 					prevVids.map((vid) =>

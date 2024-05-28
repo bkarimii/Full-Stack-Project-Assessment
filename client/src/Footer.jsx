@@ -15,6 +15,7 @@ const Footer = () => {
 						href="https://www.instagram.com/behrouz.karimiii"
 						target="_blank"
 						rel="noreferrer"
+						aria-label="instagram"
 					>
 						<FontAwesomeIcon icon={faInstagram} />
 					</a>
@@ -22,6 +23,7 @@ const Footer = () => {
 						href="https://www.linkedin.com/in/a-karimi-3ba003ab"
 						target="_blank"
 						rel="noreferrer"
+						aria-label="linkedin"
 					>
 						<FontAwesomeIcon icon={faLinkedin} />
 					</a>
@@ -29,6 +31,7 @@ const Footer = () => {
 						href="https://github.com/bkarimii"
 						target="_blank"
 						rel="noreferrer"
+						aria-label="github"
 					>
 						<FontAwesomeIcon icon={faGithub} />
 					</a>
